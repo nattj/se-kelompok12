@@ -49,14 +49,18 @@ class PatientController extends Controller
         Session::flash('age', $request->age);
         Session::flash('phone', $request->phone);
         Session::flash('address', $request->address);
+        Session::flash('disease', $request->disease);
+        Session::flash('desc', $request->desc);
 
         $request->validate([
             'nik' => 'required|unique:patient',
-            'name' => 'required',
+            'name' => 'required|string|min:3',
             'gender' => 'required',
             'age' => 'required|numeric',
-            'phone' => 'required',
-            'address' => 'required'
+            'phone' => 'required|string|min:10|max:14',
+            'address' => 'required',
+            'disease' => 'required',
+            'desc' => 'required'
         ]);
 
         $data = [
@@ -65,7 +69,9 @@ class PatientController extends Controller
             'gender' => $request->input('gender'),
             'age' => $request->input('age'),
             'phone' => $request->input('phone'),
-            'address' => $request->input('address')
+            'address' => $request->input('address'),
+            'disease' => $request->input('disease'),
+            'desc' => $request->input('desc')
         ];
         patient::create($data);
         return redirect('patient')->with('success', 'Data Succesfully Stored!');
@@ -104,18 +110,22 @@ class PatientController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|min:3',
             'gender' => 'required',
             'age' => 'required|numeric',
-            'phone' => 'required',
-            'address' => 'required'
+            'phone' => 'required|string|min:10|max:14',
+            'address' => 'required',
+            'disease' => 'required',
+            'desc' => 'required'
         ]);
         $data = [
             'name' => $request->input('name'),
             'gender' => $request->input('gender'),
             'age' => $request->input('age'),
             'phone' => $request->input('phone'),
-            'address' => $request->input('address')
+            'address' => $request->input('address'),
+            'disease' => $request->input('disease'),
+            'desc' => $request->input('desc')
         ];
         patient::where('nik', $id)->update($data);
         return redirect('/patient')->with('success', 'Success Update Data!');

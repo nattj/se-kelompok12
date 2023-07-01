@@ -20,7 +20,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Doctor</h2>
+                    <h2 class="fs-2 m-0">Medicine</h2>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -31,34 +31,32 @@
 
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
-                    <a href="{{url('/doctor/create')}}" class="btn btn-primary btn-md">Add New Doctor</a>
-                    <h3 class="fs-4 mb-3">Doctors' Table</h3>
+                    <a href="{{url('/medicine/create')}}" class="btn btn-primary btn-md">Add New Medicine</a>
+                    <h3 class="fs-4 mb-3">Medicines' Table</h3>
                     <table class="table bg-white rounded shadow-sm  table-hover">
                         <thead>
                             <tr>
-                                <th>NID</th>
+                                <th>MID</th>
                                 <th>Name</th>
-                                <th>Specialization</th>
-                                <th>Gender</th>
-                                <th>Age</th>
-                                <th>Phone</th>
-                                <th>Address</th> 
+                                <th>Dosage</th>
+                                <th>Usage</th>
+                                <th>Price (IDR)</th>
+                                <th>Quantity</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>{{$item->nid}}</td>
+                                    <td>{{$item->mid}}</td>
                                     <td>{{$item->name}}</td>
-                                    <td>{{$item->specialization}}</td>
-                                    <td>{{$item->gender}}</td>
-                                    <td>{{$item->age}}</td>
-                                    <td>{{$item->phone}}</td>
-                                    <td>{{$item->address}}</td>
+                                    <td>{{$item->dosage}}</td>
+                                    <td>{{$item->usage}}</td>
+                                    <td>{{$item->price}}</td>
+                                    <td>{{$item->qty}}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{url('/doctor/'.$item->nid.'/edit')}}" class=>Edit</a>
-                                        <form class="d-inline" action="{{'/doctor/'.$item->nid}}" method="post">
+                                        <a class="btn btn-warning" href="{{url('/medicine/'.$item->mid.'/edit')}}" class=>Edit</a>
+                                        <form class="d-inline" action="{{'/medicine/'.$item->mid}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" type="submit">Delete</button>

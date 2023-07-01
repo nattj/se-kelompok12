@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SessionController;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'isLogin'], function() {
     // Route::get('/dashboard', [DashboardController::class, 'countDoctor']);
     Route::resource('/patient', PatientController::class);
     Route::resource('/doctor', DoctorController::class);
+    Route::resource('/medicine', MedicineController::class);
 });
 
 Route::group(['middleware' => 'isGuest'], function() {
